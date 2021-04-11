@@ -30,4 +30,3 @@ public class VFC extends MainApplication {
 		launchSimulation();
 	}
 }
-}
