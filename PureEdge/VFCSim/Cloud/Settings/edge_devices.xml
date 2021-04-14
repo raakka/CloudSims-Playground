@@ -22,8 +22,8 @@
 		<batteryCapacity>0</batteryCapacity>
 		<idleConsumption>1.6</idleConsumption>
 		<maxConsumption>5.1</maxConsumption>
-		<isOrchestrator>false</isOrchestrator>
-		<generateTasks>false</generateTasks>
+		<isOrchestrator>true</isOrchestrator>
+		<generateTasks>true</generateTasks>
 		<hosts>
 			<host>
 				<core>4</core>
@@ -53,8 +53,8 @@
 		<batteryCapacity>56.2</batteryCapacity>
 		<idleConsumption>1.7</idleConsumption>
 		<maxConsumption>23.6</maxConsumption>
-		<isOrchestrator>false</isOrchestrator>
-		<generateTasks>false</generateTasks>
+		<isOrchestrator>true</isOrchestrator>
+		<generateTasks>true</generateTasks>
 		<hosts>
 			<host>
 				<core>8</core>
