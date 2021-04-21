@@ -1,18 +1,21 @@
 <?xml version="1.0"?>
 <edge_devices>
 	<!-- 
-		This is the list of edge devices (cars) 
-		Movement data sourced from:
-			http://www.ece.ubc.ca/~minchen/min_paper/2016/2016-1-IEEE-TVT-3-VehicularFogComputing.pdf
-		
-
-		Right now I am only using the laptop and raspi example that the package provided
-		TODO: add more SBC
+	These are the two types of vehicles we expect to see in the near future that comprise the fog network
+	1. Low-power SBCs (mainly IoT applications within vehicles) 
+	2. High-power devices (mainly used for self driving vehicles)
+	
+	This two categories are used to keep the heterogeneity of fog computing relevant while still 
+	abiding to the methods prescribed in previous literature (Xiao et al., 2019)
+	
+	Here I use the Raspberry Pi B+ as our low power computer because the specifications listed here
+	have been used in previous studies. I also use the specifications of the Tesla FSD computer
+	to represent what an example of a high powered mobile computer may look like
 	-->
 		
 	<device arch="x86" os="linux" vmm="xen"> <!-- this is a raspberry pi model B+-->
 		<mobility>true</mobility>
-		<speed>20.0</speed> <!-- Based on component speed from paper -->
+		<speed>20.0</speed> <!-- Based on component speed from paper (Hou et al., 2016)-->
 		<minPauseDuration>1</minPauseDuration>
 		<maxPauseDuration>120</maxPauseDuration>
 		<minMobilityDuration>1</minMobilityDuration>
@@ -22,7 +25,7 @@
 		<batteryCapacity>0</batteryCapacity>
 		<idleConsumption>1.6</idleConsumption>
 		<maxConsumption>5.1</maxConsumption>
-		<isOrchestrator>true</isOrchestrator>
+		<isOrchestrator>false</isOrchestrator>
 		<generateTasks>true</generateTasks>
 		<hosts>
 			<host>
@@ -41,32 +44,39 @@
 			</host>
 		</hosts>
 	</device>
-	<device arch="x86" os="linux" vmm="xen"> <!--  this is a laptop for example -->
-		<mobility>false</mobility>
-		<speed>0</speed> 
-		<minPauseDuration>0</minPauseDuration>
-		<maxPauseDuration>0</maxPauseDuration>
-		<minMobilityDuration>0</minMobilityDuration>
-		<maxMobilityDuration>0</maxMobilityDuration>
-		<battery>true</battery>
+	
+	<device arch="x86" os="linux" vmm="xen"> <!--This is the new TESLA FSD Computer (Reserve half of CPU for local tasks)-->
+		<mobility>true</mobility>
+		<speed>20.0</speed> 
+		<minPauseDuration>1</minPauseDuration>
+		<maxPauseDuration>100</maxPauseDuration>
+		<minMobilityDuration>100</minMobilityDuration>
+		<maxMobilityDuration>10000</maxMobilityDuration>
+		<battery>false</battery>
 		<percentage>50</percentage>
-		<batteryCapacity>56.2</batteryCapacity>
-		<idleConsumption>1.7</idleConsumption>
-		<maxConsumption>23.6</maxConsumption>
-		<isOrchestrator>true</isOrchestrator>
+		<batteryCapacity>0</batteryCapacity>
+		<idleConsumption>36</idleConsumption>
+		<maxConsumption>72</maxConsumption>
+		<isOrchestrator>false</isOrchestrator>
 		<generateTasks>true</generateTasks>
 		<hosts>
 			<host>
-				<core>8</core>
-				<mips>110000</mips>
+				<core>12</core>
+				<mips>124080</mips>
 				<ram>8000</ram>
 				<storage>1024000</storage>
 				<VMs>
 					<VM>
-						<core>8</core>
-						<mips>110000</mips>
-						<ram>8000</ram>
-						<storage>256</storage><!--256MB of caching memory used in example 6 --> 
+						<core>3</core>
+						<mips>31020</mips>
+						<ram>2000</ram>
+						<storage>256</storage>
+					</VM>
+					<VM>
+						<core>3</core>
+						<mips>31020</mips>
+						<ram>2000</ram>
+						<storage>256</storage>
 					</VM>
 				</VMs>
 			</host>
